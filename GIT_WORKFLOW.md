@@ -1,10 +1,5 @@
-Chắc chắn rồi. Việc xây dựng một tài liệu trực quan, dễ hiểu là chìa khóa để cả team làm việc đồng bộ và hiệu quả.
 
-Vì không thể tạo một website thực tế, tôi sẽ cấu trúc câu trả lời này dưới dạng một trang tài liệu duy nhất (single-page website) với các mục lục rõ ràng. Bạn có thể sao chép nội dung này vào các công cụ như Confluence, Notion, hoặc Wiki nội bộ của công ty để dễ dàng chia sẻ và cập nhật.
-
-Điểm nhấn của tài liệu này là **sơ đồ luồng công việc (workflow diagram)** để mọi người có thể hình dung toàn bộ bức tranh một cách nhanh chóng.
-
----
+# %% [markdown]---
 
 ## **TÀI LIỆU HƯỚNG DẪN QUY TRÌNH LÀM VIỆC VỚI GIT & GITHUB**
 
