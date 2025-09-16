@@ -137,78 +137,68 @@ sequenceDiagram
 ```
 
 ---
+### **Phần III: Hướng Dẫn Quy Trình Theo Từng Kịch Bản (Playbooks)**
 
-## **Phần III: Hướng Dẫn Quy Trình Theo Từng Kịch Bản (Playbooks)**
+Đây là hướng dẫn chi tiết, từng bước cho các tình huống công việc hàng ngày. Mỗi playbook được thiết kế như một danh sách kiểm tra (checklist) để đảm bảo không bỏ sót bất kỳ bước quan trọng nào.
+
+---
 
 ### **3.1. Playbook 1: Phát Triển Một Tính Năng Mới (Luồng Chuẩn)**
 
-**Mục tiêu:** Đưa code của một ticket từ máy local lên môi trường `develop`.
+**🎯 Mục tiêu:** Đưa code của một ticket từ máy local của developer lên môi trường `develop` một cách an toàn. Đây là luồng công việc diễn ra hàng ngày.
 
-```mermaid
-graph TD
-    A[Bắt đầu: Lấy code mới nhất từ `develop`] --> B{Tạo branch `feature/*`};
-    B --> C[Code & Tự kiểm thử trên Local];
-    C --> D{Tạo Pull Request nhắm vào `develop`};
-    D --> E[Review Code & Approve];
-    E --> F(Nhấn `Merge when ready`);
-    F --> G((Merge Queue tự động xử lý));
-    G --> H[Tester verify trên môi trường Develop];
-    H --> I[Kết thúc];
-```
+| Bước | Ai thực hiện? | Hành động cụ thể & Hướng dẫn | Mục đích / Lưu ý quan trọng |
+| :--- | :--- | :--- | :--- |
+| **1. Chuẩn bị** | 👨‍💻 **Developer** | 1. Lấy code mới nhất từ `develop`:<br> `git checkout develop`<br>`git pull origin develop`<br>2. Tạo branch mới theo quy tắc đặt tên:<br>`git checkout -b feature/TICKET-123-ten-ngan-gon` | Đảm bảo bạn bắt đầu từ nền tảng code mới nhất để tránh conflict về sau. |
+| **2. Phát triển & Tự kiểm thử** | 👨‍💻 **Developer** | 1. Thực hiện coding cho ticket.<br>2. **Tự chạy và kiểm thử kỹ lưỡng trên môi trường local.**<br>3. Viết/Cập nhật các bài Unit Test & Integration Test cần thiết. | **Chất lượng bắt đầu từ chính developer.** Đảm bảo tính năng hoạt động đúng trước khi nhờ người khác review. |
+| **3. Tạo Pull Request** | 👨‍💻 **Developer** | 1. Push branch `feature/*` lên GitHub.<br>2. Tạo Pull Request (PR) với đích là branch **`develop`**.<br>3. **Viết mô tả PR đầy đủ:** Link ticket, tóm tắt thay đổi, hướng dẫn cho Tester. | Cung cấp đủ thông tin sẽ giúp quá trình review nhanh hơn và Tester biết cách kiểm tra tính năng của bạn. |
+| **4. Review & Approve** | 👀 **Reviewer /<br>Tech Lead** | 1. Review code dựa trên các tiêu chuẩn về logic, hiệu năng, và coding convention.<br>2. Yêu cầu chỉnh sửa nếu cần.<br>3. Nhấn **"Approve"** khi PR đã đạt chất lượng. | Đảm bảo chất lượng code và là bước kiểm soát chéo quan trọng. |
+| **5. Thêm vào Hàng đợi** | 👨‍💻 **Developer /<br>Tech Lead** | 1. Sau khi PR được approve và các status check (CI/CD) đã pass.<br>2. Nhấn vào nút **"Merge when ready"**. <br>🚨 **TUYỆT ĐỐI KHÔNG** dùng "Rebase and merge" hay "Squash and merge" trực tiếp. | **Đây là bước chuyển giao trách nhiệm.** Bạn đã hoàn thành công việc của mình và bàn giao việc hợp nhất code cho Bot Merge Queue. |
+| **6. Verify trên Develop** | 🧪 **Tester** | 1. Nhận thông báo khi một "chuyến tàu" PR được deploy thành công lên môi trường `develop`.<br>2. Vào môi trường `develop` để kiểm tra và xác nhận chức năng của ticket tương ứng. | Xác nhận rằng tính năng hoạt động đúng trong môi trường tích hợp chung với code của các thành viên khác. |
+
+---
 
 ### **3.2. Playbook 2: Chuẩn Bị và Release một Sprint**
 
-**Mục tiêu:** Chốt phạm vi, ổn định và phát hành phiên bản mới.
+**🎯 Mục tiêu:** Chốt phạm vi của sprint, ổn định hệ thống trên Staging và phát hành phiên bản mới lên Production một cách có kiểm soát.
 
-```mermaid
-graph TD
-    A[Bắt đầu: Đến hạn Feature Freeze] --> B{Tạo branch `release/*` từ `develop`};
-    B --> C[CI/CD tự động deploy lên Staging];
-    C --> D{Tester verify & báo cáo lỗi trên Staging};
-    D -- Lỗi phát sinh --> E[Thực hiện Playbook 3: Sửa lỗi Staging];
-    E --> D;
-    D -- Mọi thứ ổn định --> F[Xác nhận "Go-live"];
-    F --> G{Merge `release/*` vào `master`};
-    G --> H[Tạo Tag phiên bản mới];
-    H --> I[Deploy Production];
-    I --> J{Đồng bộ hóa `master` ngược lại vào `develop`};
-    J --> K[Xóa branch `release/*`];
-    K --> L[Kết thúc];
-```
+| Bước | Ai thực hiện? | Hành động cụ thể & Hướng dẫn | Mục đích / Lưu ý quan trọng |
+| :--- | :--- | :--- | :--- |
+| **1. Đóng băng Tính năng** | 👑 **Tech Lead / PM** | 1. Tuân thủ **DEADLINE 1** (ví dụ: 17:00 Thứ 6, Tuần 3).<br>2. Tạo branch `release/*` từ `develop`:<br>`git checkout develop && git pull`<br>`git checkout -b release/sprint-19092025`<br>`git push origin release/sprint-19092025` | **Chốt phạm vi công việc.** Ngăn chặn các tính năng mới được thêm vào phút chót, gây rủi ro cho phiên bản release. |
+| **2. Triển khai Staging** | 🤖 **CI/CD** | Hệ thống sẽ tự động nhận diện branch `release/*` mới và deploy nó lên môi trường **Staging**. | Tự động hóa quá trình chuẩn bị môi trường kiểm thử cuối cùng. |
+| **3. Ổn định trên Staging** | 🧪 **Tester** &<br>👨‍💻 **Developer** | 1. **Tester:** Thực hiện kiểm thử hồi quy toàn diện, UAT trên Staging.<br>2. **Developer:** Sẵn sàng nhận và sửa các lỗi được báo cáo từ Staging bằng cách thực hiện **Playbook 3**. | Đây là giai đoạn "tổng duyệt" cuối cùng. Mục tiêu là tìm và diệt tất cả các bug nghiêm trọng trước khi ra mắt. |
+| **4. Xác nhận "Go-live"** | 🧪 **Tester / PM** | Tuân thủ **DEADLINE 2** (ví dụ: 17:00 Thứ 5, Tuần 4).<br>Chính thức xác nhận phiên bản trên Staging đã đủ điều kiện để phát hành. | Là quyết định kinh doanh và kỹ thuật quan trọng, xác nhận sản phẩm đã sẵn sàng. |
+| **5. Thực hiện Release** | ⚙️ **Infra/DevOps /<br>Tech Lead** | 1. Merge branch `release/*` vào `master`.<br>2. **Tạo Tag phiên bản mới** trên `master`:<br>`git tag -a v2.5.0 -m "Release v2.5.0"`<br>`git push origin v2.5.0`<br>3. Deploy `master` lên **Production**. | Quy trình phát hành chính thức. Việc tạo Tag là bắt buộc để có thể rollback khi cần. |
+| **6. Đồng bộ hóa & Dọn dẹp** | 👑 **Tech Lead** | 1. Merge `master` ngược lại vào `develop` để cập nhật các bản vá lỗi cuối cùng.<br>2. Xóa branch `release/*` đã hoàn thành nhiệm vụ trên GitHub. | Giữ cho `develop` luôn là phiên bản mới nhất và repository gọn gàng. |
+
+---
 
 ### **3.3. Playbook 3: Xử Lý Lỗi Trên Môi Trường Staging**
 
-**Mục tiêu:** Vá lỗi trên phiên bản sắp release một cách nhanh chóng và an toàn.
+**🎯 Mục tiêu:** Vá lỗi được phát hiện trên phiên bản sắp release một cách nhanh chóng, an toàn và không ảnh hưởng đến `develop`.
 
-```mermaid
-graph TD
-    A[Bắt đầu: Phát hiện lỗi trên Staging] --> B{Tạo branch `fix/*` từ `release/*`};
-    B --> C[Sửa lỗi];
-    C --> D{Tạo PR nhắm vào `release/*`};
-    D --> E[Review & Merge];
-    E --> F[CI/CD deploy lại Staging];
-    F --> G{Tester xác nhận lỗi đã được sửa};
-    G --> H[Cherry-pick commit sửa lỗi vào `develop`];
-    H --> I[Kết thúc];
-```
+| Bước | Ai thực hiện? | Hành động cụ thể & Hướng dẫn | Mục đích / Lưu ý quan trọng |
+| :--- | :--- | :--- | :--- |
+| **1. Tạo Branch Sửa Lỗi** | 👨‍💻 **Developer** | 1. Lấy code mới nhất từ branch `release/*` hiện tại.<br>2. Tạo branch `fix/*` từ đó:<br>`git checkout release/sprint-19092025 && git pull`<br>`git checkout -b fix/TICKET-789-bug-tren-staging` | **Sửa lỗi tại nguồn.** Branch `fix` phải bắt nguồn từ `release` để đảm bảo chỉ vá lỗi trên phiên bản đang được kiểm thử. |
+| **2. Sửa lỗi & Tạo PR** | 👨‍💻 **Developer** | 1. Sửa lỗi trên branch `fix/*`.<br>2. Tạo PR với đích là branch **`release/sprint-19092025`**. | Cô lập hoàn toàn việc sửa lỗi, không dính dáng gì đến các tính năng mới trên `develop`. |
+| **3. Merge & Deploy lại Staging** | 👑 **Tech Lead** &<br>🤖 **CI/CD** | 1. Review và merge PR sửa lỗi vào `release/*`.<br>2. CI/CD sẽ tự động deploy lại phiên bản đã vá lỗi lên **Staging**. | Cập nhật nhanh chóng bản vá lên môi trường Staging để Tester có thể xác nhận. |
+| **4. Xác nhận đã sửa lỗi** | 🧪 **Tester** | Vào lại môi trường Staging để kiểm tra và xác nhận bug đã được khắc phục. | Đảm bảo chất lượng của phiên bản release. |
+| **5. Đồng bộ hóa với `develop`** | 👨‍💻 **Developer /<br>Tech Lead** | 1. Lấy mã hash của commit sửa lỗi trên `release/*`.<br>2. Dùng `cherry-pick` để áp dụng commit đó vào `develop`:<br>`git checkout develop && git pull`<br>`git cherry-pick <commit_hash>`<br>`git push` | **BẮT BUỘC.** Tránh cho lỗi này bị tái phát ở sprint sau. |
+
+---
 
 ### **3.4. Playbook 4: Sửa Lỗi Khẩn Cấp Trên Production (Hotfix)**
 
-**Mục tiêu:** Đưa một bản vá lỗi nghiêm trọng lên Production trong thời gian ngắn nhất.
+**🎯 Mục tiêu:** Đưa một bản vá lỗi nghiêm trọng lên Production trong thời gian ngắn nhất với rủi ro thấp nhất.
 
-```mermaid
-graph TD
-    A[Bắt đầu: Lỗi nghiêm trọng trên Production] --> B{Tạo branch `hotfix/*` từ `master`};
-    B --> C[Sửa lỗi];
-    C --> D{Tạo PR nhắm vào `master`};
-    D --> E[Deploy branch `hotfix/*` tạm thời lên Staging để verify];
-    E --> F{Tester xác nhận hotfix hoạt động tốt};
-    F --> G[Merge PR vào `master`];
-    G --> H[Tạo Tag phiên bản mới];
-    H --> I[Deploy Production];
-    I --> J{Đồng bộ hóa `master` vào `develop` VÀ `release/*` (nếu có)};
-    J --> K[Kết thúc];
-```
+| Bước | Ai thực hiện? | Hành động cụ thể & Hướng dẫn | Mục đích / Lưu ý quan trọng |
+| :--- | :--- | :--- | :--- |
+| **1. Giao tiếp** | 👑 **Tech Lead / PM** | **Thông báo khẩn** cho toàn team: *"Môi trường Staging sẽ được sử dụng để verify hotfix trong [X] giờ."* | Minh bạch và tránh gây gián đoạn cho các thành viên khác đang có kế hoạch làm việc trên Staging. |
+| **2. Tạo Branch Hotfix** | 👨‍💻 **Developer** | 1. Lấy code mới nhất từ **`master`**.<br>2. Tạo branch `hotfix/*` từ đó:<br>`git checkout master && git pull`<br>`git checkout -b hotfix/TICKET-999-sua-loi-thanh-toan` | **An toàn tuyệt đối.** `master` là nguồn duy nhất phản ánh chính xác code đang chạy trên Production. |
+| **3. Sửa lỗi & Tạo PR** | 👨‍💻 **Developer** | 1. Sửa lỗi trên branch `hotfix/*`.<br>2. Tạo PR với đích là branch **`master`**. | Luồng đi thẳng tới Production, bỏ qua `develop`. |
+| **4. Verify trên Staging** | ⚙️ **Infra/DevOps** &<br>🧪 **Tester** | 1. **Infra/DevOps:** Tạm thời deploy branch `hotfix/*` lên môi trường **Staging**.<br>2. **Tester:** Thực hiện verify khẩn cấp để đảm bảo bản vá hoạt động đúng và không gây lỗi phụ. | Bước kiểm duyệt chất lượng cuối cùng nhưng cực kỳ quan trọng trước khi tác động đến người dùng thật. |
+| **5. Release Hotfix** | ⚙️ **Infra/DevOps** &<br>👑 **Tech Lead** | 1. Merge PR hotfix vào `master`.<br>2. **Tạo Tag phiên bản vá lỗi mới** (ví dụ: `v2.5.1`).<br>3. Deploy `master` lên **Production**. | Hoàn tất quá trình phát hành bản vá. |
+| **6. Đồng bộ hóa Toàn Diện** | 👑 **Tech Lead** | 1. Merge `master` (đã chứa hotfix) ngược lại vào:<br> - Branch **`develop`**.<br> - Branch **`release/*`** hiện hành (nếu có).<br>2. Khôi phục lại Staging về branch `release/*` và thông báo cho team. | **CỰC KỲ QUAN TRỌNG.** Đảm bảo lỗi được vá ở tất cả các dòng code chính, tránh nợ kỹ thuật. |
 
 ---
 
