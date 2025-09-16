@@ -11,24 +11,24 @@ Tài liệu này là nguồn tham khảo chính thức và duy nhất cho mọi 
 
 ## **Mục Lục**
 
-1.  [**Phần I: Nền Tảng & Nguyên Tắc**](#phần-i-nền-tảng--nguyên-tắc)
-    1.1. [Triết Lý Cốt Lõi](#11-triết-lý-cốt-lõi)
-    1.2. [Tổng Quan về các Môi Trường](#12-tổng-quan-về-các-môi-trường)
-    1.3. [Mô Hình Branch & Vòng Đời](#13-mô-hình-branch--vòng-đời)
-2.  [**Phần II: Giải Pháp Trọng Tâm - Merge Queue**](#phần-ii-giải-pháp-trọng-tâm---merge-queue)
-    2.1. [Bài Toán Cần Giải Quyết](#21-bài-toán-cần-giải-quyết)
-    2.2. [Sơ Đồ Luồng Hoạt Động Của Merge Queue](#22-sơ-đồ-luồng-hoạt-động-của-merge-queue)
-3.  [**Phần III: Hướng Dẫn Quy Trình Theo Từng Kịch Bản (Playbooks)**](#phần-iii-hướng-dẫn-quy-trình-theo-từng-kịch-bản-playbooks)
-    3.1. [**Playbook 1: Phát Triển Một Tính Năng Mới (Luồng Chuẩn)**](#31-playbook-1-phát-triển-một-tính-năng-mới-luồng-chuẩn)
-    3.2. [**Playbook 2: Chuẩn Bị và Release một Sprint**](#32-playbook-2-chuẩn-bị-và-release-một-sprint)
-    3.3. [**Playbook 3: Xử Lý Lỗi Trên Môi Trường Staging**](#33-playbook-3-xử-lý-lỗi-trên-môi-trường-staging)
-    3.4. [**Playbook 4: Sửa Lỗi Khẩn Cấp Trên Production (Hotfix)**](#34-playbook-4-sửa-lỗi-khẩn-cấp-trên-production-hotfix)
-4.  [**Phần IV: Dòng Thời Gian & Các Mốc Tuân Thủ**](#phần-iv-dòng-thời-gian--các-mốc-tuân-thủ)
-    4.1. [Sơ Đồ Timeline Trực Quan (Sprint 4 Tuần)](#41-sơ-đồ-timeline-trực-quan-sprint-4-tuần)
-    4.2. [Diễn Giải Các Giai Đoạn và Trách Nhiệm](#42-diễn-giải-các-giai-đoạn-và-trách-nhiệm)
-5.  [**Phần V: Tối Ưu Hóa & Quy Tắc Vàng**](#phần-v-tối-ưu-hóa--quy-tắc-vàng)
-    5.1. [Tối Ưu Hóa Hiệu Năng CI/CD](#51-tối-ưu-hóa-hiệu-năng-cicd)
-    5.2. [Quy Tắc Vàng Khi Làm Việc](#52-quy-tắc-vàng-khi-làm-việc)
+1.  [**Phần I: Nền Tảng & Nguyên Tắc**](#phần-i-nền-tảng--nguyên-tắc)  
+    &nbsp;&nbsp;&nbsp;&nbsp;1.1. [Triết Lý Cốt Lõi](#11-triết-lý-cốt-lõi)  
+    &nbsp;&nbsp;&nbsp;&nbsp;1.2. [Tổng Quan về các Môi Trường](#12-tổng-quan-về-các-môi-trường)  
+    &nbsp;&nbsp;&nbsp;&nbsp;1.3. [Mô Hình Branch & Vòng Đời](#13-mô-hình-branch--vòng-đời)  
+2.  [**Phần II: Giải Pháp Trọng Tâm - Merge Queue**](#phần-ii-giải-pháp-trọng-tâm---merge-queue)  
+    &nbsp;&nbsp;&nbsp;&nbsp;2.1. [Bài Toán Cần Giải Quyết](#21-bài-toán-cần-giải-quyết)  
+    &nbsp;&nbsp;&nbsp;&nbsp;2.2. [Sơ Đồ Luồng Hoạt Động Của Merge Queue](#22-sơ-đồ-luồng-hoạt-động-của-merge-queue)  
+3.  [**Phần III: Hướng Dẫn Quy Trình Theo Từng Kịch Bản (Playbooks)**](#phần-iii-hướng-dẫn-quy-trình-theo-từng-kịch-bản-playbooks)  
+    &nbsp;&nbsp;&nbsp;&nbsp;3.1. [**Playbook 1: Phát Triển Một Tính Năng Mới (Luồng Chuẩn)**](#31-playbook-1-phát-triển-một-tính-năng-mới-luồng-chuẩn)  
+    &nbsp;&nbsp;&nbsp;&nbsp;3.2. [**Playbook 2: Chuẩn Bị và Release một Sprint**](#32-playbook-2-chuẩn-bị-và-release-một-sprint)  
+    &nbsp;&nbsp;&nbsp;&nbsp;3.3. [**Playbook 3: Xử Lý Lỗi Trên Môi Trường Staging**](#33-playbook-3-xử-lý-lỗi-trên-môi-trường-staging)  
+    &nbsp;&nbsp;&nbsp;&nbsp;3.4. [**Playbook 4: Sửa Lỗi Khẩn Cấp Trên Production (Hotfix)**](#34-playbook-4-sửa-lỗi-khẩn-cấp-trên-production-hotfix)  
+4.  [**Phần IV: Dòng Thời Gian & Các Mốc Tuân Thủ**](#phần-iv-dòng-thời-gian--các-mốc-tuân-thủ)  
+    &nbsp;&nbsp;&nbsp;&nbsp;4.1. [Sơ Đồ Timeline Trực Quan (Sprint 4 Tuần)](#41-sơ-đồ-timeline-trực-quan-sprint-4-tuần)  
+    &nbsp;&nbsp;&nbsp;&nbsp;4.2. [Diễn Giải Các Giai Đoạn và Trách Nhiệm](#42-diễn-giải-các-giai-đoạn-và-trách-nhiệm)  
+5.  [**Phần V: Tối Ưu Hóa & Quy Tắc Vàng**](#phần-v-tối-ưu-hóa--quy-tắc-vàng)  
+    &nbsp;&nbsp;&nbsp;&nbsp;5.1. [Tối Ưu Hóa Hiệu Năng CI/CD](#51-tối-ưu-hóa-hiệu-năng-cicd)  
+    &nbsp;&nbsp;&nbsp;&nbsp;5.2. [Quy Tắc Vàng Khi Làm Việc](#52-quy-tắc-vàng-khi-làm-việc)  
 
 ---
 
@@ -150,7 +150,7 @@ graph TD
     B --> C[Code & Tự kiểm thử trên Local];
     C --> D{Tạo Pull Request nhắm vào `develop`};
     D --> E[Review Code & Approve];
-    E --> F(Nhấn "Merge when ready");
+    E --> F(Nhấn `Merge when ready`);
     F --> G((Merge Queue tự động xử lý));
     G --> H[Tester verify trên môi trường Develop];
     H --> I[Kết thúc];
