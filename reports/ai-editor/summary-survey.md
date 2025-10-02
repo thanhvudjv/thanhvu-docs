@@ -1,9 +1,13 @@
 
 ---
+## **Báo cáo Phân tích Hiệu quả các Công cụ AI IDE**
 
-### **1. Tóm tắt**
+### **1. Bối cảnh Khảo sát**
+Báo cáo được tổng hợp từ khảo sát thực hiện vào cuối tháng 9/2025 với **46 lập trình viên** tại công ty. Với **83% (39 người) có trên 5 năm kinh nghiệm**, chủ yếu ở các mảng Backend và Frontend.
 
-Phân tích dữ liệu feedback của các developer cho thấy: **Gemini Code Assist hiện không phải là công cụ phù hợp cho các developer của công ty.**
+### **2. Tóm tắt Kết quả Chính**
+
+Phân tích dữ liệu cho thấy **Gemini Code Assist chưa đáp ứng được kỳ vọng và yêu cầu công việc** của đội ngũ phát triển của Dr.JOY.
 **Hơn 80% đánh giá công cụ chỉ ở mức trung bình hoặc kém**, với các lý do cốt lõi bao gồm:
 
 1.  **Hiệu suất rất chậm, làm gián đoạn quy trình làm việc.**
@@ -12,15 +16,23 @@ Phân tích dữ liệu feedback của các developer cho thấy: **Gemini Code 
 
 Trong khi đó, **Cursor AI Editor được 93% người dùng khẳng định là vượt trội hơn hẳn Gemini Code Assist**. 
 
+**Đề xuất chính:** Cân nhắc không gia hạn Gemini Code Assist vào tháng 3 sang năm và chuyển hướng nguồn lực sang thử nghiệm và áp dụng các công cụ hiệu quả hơn như Cursor AI.
+
 ---
 
-### **2. Phân tích Chi tiết: Tại sao Gemini Code Assist Thất bại?**
+### **3. Phân tích Chi tiết: Gemini Code Assist**
 
-**A. Đánh giá Chung về Chất lượng: Mức độ Hài lòng Rất Thấp**
+#### **A. Đánh giá Chung: Mức độ Hài lòng Rất Thấp**
 
 Trong số 46 người tham gia đưa ra đánh giá, chỉ có **19%** cảm thấy Gemini Code Assist hoạt động tốt. Ngược lại, có tới **81%** cho rằng công cụ chỉ ở mức trung bình hoặc kém.
 
-**B. Các Vấn đề Cốt lõi Gây ra Đánh giá Thấp**
+*   **Tốt (4-5 điểm):** 19% (6 người)
+*   **Trung bình (3 điểm):** 62.5% (20 người)
+*   **Kém (1-2 điểm):** 19% (6 người)
+
+#### **Biểu đồ 1: Đánh giá Chất lượng Tổng thể của Gemini Code Assist**
+
+#### **B. Các Vấn đề Cốt lõi**
 
 Các phản hồi tiêu cực tập trung vào ba nhóm vấn đề chính:
 
@@ -37,21 +49,37 @@ Các phản hồi tiêu cực tập trung vào ba nhóm vấn đề chính:
 
 ---
 
-### **3. So sánh Trực tiếp: Tại sao các Công cụ Khác Vượt trội?**
+### **4. So sánh Trực tiếp với Cursor AI và Copilot**
 
-**A. Gemini vs. Cursor AI**
+#### **A. Gemini Code Assist vs. Cursor AI**
 
-*   **Kết quả so sánh:** **93%** người dùng đã trải nghiệm cả hai công cụ đều đồng ý rằng **Cursor AI tốt hơn Gemini** (trong đó 76% nói rằng "Tốt hơn nhiều").
+Dựa trên phản hồi từ 29 người đã dùng cả hai công cụ, **Cursor AI so với Gemini Code Assist vượt trội hơn**.
+
+**Đánh giá về Cursor AI so với Gemini Code Assist:**
+*   **Tốt hơn nhiều:** 76% (22 người)
+*   **Hơi tốt hơn:** 17% (5 người)
+*   **Tương đương:** 7% (2 người)
 
 *   **Điểm mạnh của Cursor AI:**
-    *   Gợi ý Chính xác & Sát ngữ cảnh
-    *   Tốc độ Phản hồi Nhanh
-    *   Linh hoạt Lựa chọn Model AI
-    *   Tích hợp sẵn GPT-4 và Claude... Có thể chuyển đổi dễ dàng giữa các model AI.
+    *   **Gợi ý Chính xác & Sát ngữ cảnh**
+    *   **Tốc độ Phản hồi Nhanh** 
+    *   **Linh hoạt Lựa chọn Model AI:** Cho phép lựa chọn giữa GPT-4, Claude Sonnet, v.v., giúp tối ưu cho từng tác vụ cụ thể.
+    *   **Tích hợp workflow mượt mà** và có nhiều tính năng nâng cao (làm việc với nhiều file, revert checkpoint).
 
-**B. Gemini vs. Copilot IDE: Một Lựa chọn Đáng tin cậy hơn**
+*   **Biểu đồ 2: Gemini Code Assist vs. Cursor AI**
 
-*   **Kết quả so sánh:** **75%** người dùng đánh giá Copilot tốt hơn Gemini.
-*   **Điểm mạnh chính:** Tốc độ nhanh, gợi ý đáng tin cậy, và đặc biệt là khả năng **tích hợp sâu và mượt mà vào các IDE của JetBrains** (IntelliJ, WebStorm)
+#### **B. Gemini Code Assist vs. Copilot IDE**
 
----
+Trong 12 người đã dùng cả hai, Copilot cũng được đánh giá cao hơn.
+
+**Đánh giá về Copilot IDE so với Gemini:**
+*   **Tốt hơn nhiều:** 33% (4 người)
+*   **Hơi tốt hơn:** 42% (5 người)
+*   **Tương đương:** 17% (2 người)
+*   **Kém hơn:** 8% (1 người)
+
+*   **Điểm mạnh của Copilot:**
+    *   Gợi ý tin cậy và tốc độ phản hồi nhanh.
+    *   Tích hợp và ổn định với các IDE của JetBrains (IntelliJ, WebStorm)
+
+*   **Biểu đồ 3: Gemini Code Assist vs. Copilot IDE**

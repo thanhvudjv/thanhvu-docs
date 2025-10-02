@@ -9,7 +9,8 @@
 
 ### **1. Tóm tắt**
 
-Phân tích dữ liệu feedback của các developer cho thấy: Gemini Code Assist đang gây thất vọng và không phải là công cụ hiệu quả cho đội ngũ của chúng ta. **Hơn 80% đánh giá công cụ chỉ ở mức trung bình hoặc kém**, với các lý do cốt lõi bao gồm:
+Phân tích dữ liệu feedback của các developer cho thấy: **Gemini Code Assist hiện không phải là công cụ phù hợp cho các developer của công ty.**
+**Hơn 80% đánh giá công cụ chỉ ở mức trung bình hoặc kém**, với các lý do cốt lõi bao gồm:
 
 1.  **Hiệu suất rất chậm, làm gián đoạn quy trình làm việc.**
 2.  **Chất lượng gợi ý code thiếu tin cậy, thường xuyên sai logic hoặc không phù hợp ngữ cảnh.**
