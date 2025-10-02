@@ -47,7 +47,7 @@ Các phản hồi tiêu cực tập trung vào ba nhóm vấn đề chính:
     *   Gợi ý Chính xác & Sát ngữ cảnh
     *   Tốc độ Phản hồi Nhanh
     *   Linh hoạt Lựa chọn Model AI
-    *   Tích hợp Workflow & UX Tốt
+    *   Tích hợp sẵn GPT-4 và Claude... Có thể chuyển đổi dễ dàng giữa các model AI.
 
 **B. Gemini vs. Copilot IDE: Một Lựa chọn Đáng tin cậy hơn**
 
